@@ -1,0 +1,19 @@
+<h2>Add new user</h2>
+<div class='addUserRow' ng-init='newUser = {name:"", surname:"",tasks:[]}'>
+
+	<div>
+		<input class='input' ng-model='newUser.name'>
+	</div>
+
+	<div>
+		<input class='input' ng-model='newUser.surname'>
+	</div>
+
+	<div>
+		<input class='input' ng-model='newUser.tasks[0]'>
+	</div>
+
+	<button class='button green' ng-click='editUsersData.add(newUser)' ui-sref='usersList-display'>Save</button>
+
+</div>
+

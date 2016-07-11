@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app='mainApplication'>
+
+	<head>
+		<meta charset='utf-8'>
+		<meta name="viewport" content="width=device-width; initial-scale=1">
+		<!-- <base href='/'> -->
+
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js'></script>
+		<script src='.\angular-ui-router\release\angular-ui-router.js'></script>
+		<script src='utility.js'></script>
+		<script src='customFilters.js'></script>
+		<script src='usersListModule.js'></script>
+		<script src='menuList.controller.js'></script>
+		<script src='usersList.controller.js'></script>
+		<script src='pagination.js'></script>
+		<script src='mianApp.js'></script>
+
+		<link rel='stylesheet' href='css/main.css'>
+		<link rel='stylesheet' href='css/menu.css'>
+		<link rel='stylesheet' href='css/buttonStyles.css'>
+		<link rel='stylesheet' href='css/inputStyles.css'>
+
+	</head>
+
+	<body ng-app='usersListModule'>
+
+		<div class='showMenuButton'>
+			<input type='checkbox' name='dang'>
+			<div class='hamburgerIcon'></div>
+			<div class='menu' ng-controller='menuList as menuList'>
+				<div class='categoryButton' ng-repeat='category in menuList.categories'><a ui-sref='{{category.sref}}'>{{category.name}}</a></div>
+			</div>
+		</div>
+
+		<div class='wrapper' ui-view=''></div>
+
+	    <!-- <div class='box'>
+	      <div class='dot red first'></div>
+	      <div class='dot green second'></div>
+	      <div class='dot orange third'></div>
+	      <div class='dot blue fourth'></div>
+	  </div> -->
+
+	</body>
+
+</html>

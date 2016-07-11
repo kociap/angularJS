@@ -1,0 +1,40 @@
+<div class='usersList' ng-app='pagination' ng-controller='paginationController as pagination' ng-init='pagination.availableIndices = usersList.users'>
+
+	<h2>Users List</h2>
+
+	<pagination-page-list></pagination-page-list>
+	<users-list-filtering></users-list-filtering>
+
+	<div class='user ng-class:{ activeRow:usersList.editing === $index }' ng-repeat='(id, user) in usersList.users | wordFilter:["name","surname"]:usersListFilterName:usersListFilterSurname | orderBy:["name", "surname"] | paginationFilter:pagination.isOn:pagination.currentPageIndex:pagination.maxPages'>
+
+		<div>
+			<span ng-hide='usersList.editing === $index'>{{user.name}}</span>
+			<input class='input' ng-show='usersList.editing === $index' ng-model='usersList.changedUser.name'>
+		</div>
+
+		<div>
+			<span ng-hide='usersList.editing === $index'>{{user.surname}}</span>
+			<input class='input' ng-show='usersList.editing === $index' ng-model='usersList.changedUser.surname'>
+		</div>
+
+		<div ng-if='usersList.editing !== $index' class='options' ng-controller='editUsersData as editUsersData'>
+			<button class='button blue' ng-click='usersList.showTasks(user)'>Show tasks</button>
+			<button class='button green' 
+					ng-click='
+						usersList.editing = $index; 
+						usersList.changedUser.name = user.name; 
+						usersList.changedUser.surname = user.surname
+					'>Edit</button>
+			<button class='button red' ng-click='editUsersData.delete(id)'>Delete</button>
+		</div>
+
+		<div ng-if='usersList.editing === $index' class='options' ng-controller='editUsersData as editUsersData'>
+			<button class='button green' ng-click='editUsersData.edit(user, usersList.changedUser); usersList.editing = -1'>Save</button>
+			<button class='button orange' ng-click='usersList.editing = -1'>Cancel</button>
+		</div>
+
+	</div>
+
+	<pagination-page-list></pagination-page-list>
+</div>
+</div>
